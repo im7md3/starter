@@ -8,5 +8,13 @@ Route::get('/',function(){
     return 'Home';
 });
 
+Route::get('/redirect/{service}','SocialController@redirect');
+Route::get('/callback/{service}','SocialController@callback');
 
+Route::get('/offers','CrudController@getOffer');
+
+Route::group(['prefix'=>'offer'],function(){
+    Route::get('create','CrudController@create');
+    Route::post('store','CrudController@store')->name('offer.store');
+});
 
