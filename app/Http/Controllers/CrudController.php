@@ -50,7 +50,7 @@ class CrudController extends Controller
             'price'      =>$request['price'],
             'details'      =>$request['details'],
         ]);
-        return redirect()->back()->with(['success'=>'Offer has been added successfully']);
+        return redirect()->back()->with(['success'=>__('message.Offer has been added successfully')]);
     }
 
 }
