@@ -6,7 +6,8 @@ use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
-
+use App\Http\Requests\OfferRequest;
+use LaravelLocalization;
 
 
 class CrudController extends Controller
@@ -15,9 +16,15 @@ class CrudController extends Controller
     {
     }
 
-    public function getOffer()
+    public function getAllOffers()
     {
-        return Offer::get();
+        $offers = Offer::select(
+            'id',
+            'name_' . LaravelLocalization::getCurrentLocale() . ' as name',
+            'price',
+            'details_' . LaravelLocalization::getCurrentLocale(). ' as details',
+        )->get();
+        return view('offers.all', compact('offers'));
     }
 
     /* public function store()
@@ -30,27 +37,26 @@ class CrudController extends Controller
         return 'Done ^-^';
     } */
 
-    public function create(){
+    public function create()
+    {
         return view('offers.create');
     }
 
-    public function store(Request $request){
-        $rules=[
-            'name'  =>'required|max:100|unique:Offers,name',
-            'price'  =>'required|numeric',
-            'details'  =>'required|max:100',
-        ];
-        $validator=Validator::make($request->all(),$rules);
+    public function store(OfferRequest $request)
+    {
+
+        /* $validator=Validator::make($request->all(),$rules);
         if($validator -> fails()){
             return redirect()->back()->withInput($request->all())->withErrors($validator);
-        }
+        } */
 
         Offer::create([
-            'name'      =>$request['name'],
-            'price'      =>$request['price'],
-            'details'      =>$request['details'],
+            'name_ar'           => $request->name_ar,
+            'name_en'           => $request->name_en,
+            'price'             => $request->price,
+            'details_ar'        => $request->details_ar,
+            'details_en'        => $request->details_en,
         ]);
-        return redirect()->back()->with(['success'=>__('message.Offer has been added successfully')]);
+        return redirect()->back()->with(['success' => __('message.Offer has been added successfully')]);
     }
-
 }
