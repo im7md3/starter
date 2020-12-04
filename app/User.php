@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','expire'
+        'name', 'email', 'password','expire','age'
     ];
 
     /**
@@ -36,4 +36,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    ############################## Relations #####################====================
+    public function phone(){
+        return $this->hasOne('App\Models\phone','user_id');
+    }
 }

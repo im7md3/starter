@@ -10,11 +10,21 @@
         'offer details ar'                      => 'تفاصيل العرض بالعربي',
         'offer details en'                      => 'تفاصيل العرض بالإنجليزي',
         'Add your offer'                        => 'إضافة عرض جديد',
+        'edit your offer'                        => 'تعديل العرض',
         'add'                                   => 'إضافة',
+        'edit'                                   => 'تعديل',
+        'Successfully updated'                  => 'تم التحديث بنجاح',
         'The name field is required'            =>'اسم العرض مطلوب',
         'The name has already been taken'       =>'الاسم مأخوذ بالفعل',
         'The price field is required'           =>'سعر العرض مطلوب',
         'The details field is required'         =>'تفاصيل العرض مطلوبة',
+        'operation'                             => 'الإجراءات',
+        'edit'                                  => 'تعديل',
+        'delete'                                  => 'حذف',
+        'Sorry this offer does not exist'          => 'عذرا هذا العرض غير موجود',
+        'Offer has been successfully deleted'         => 'تم حذف العرض بنجاح',
+        'Choose the offer image'                  => 'اختر صورة العرض',
+        'offer image'                           => 'صورة العرض',
 
     ]
 ?>

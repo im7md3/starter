@@ -98,8 +98,16 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('offer.store') }}">
+            <form method="POST" action="{{ route('offer.insert') }}" enctype="multipart/form-data">
                 @csrf
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{__('message.Choose the offer image')}}</label>
+                    <input type="file" class="form-control" name="photo" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" >
+                    @error('photo')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">{{__('message.offer name ar')}}</label>
                     <input type="text" class="form-control" name="name_ar" id="exampleInputEmail1"

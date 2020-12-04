@@ -88,14 +88,26 @@
         </div>
     </nav>
     
+    @if (Session::has('success'))
+        <div class="alert alert-success">{{Session::get('success')}}</div>
+    @endif
+
+    @if(Session::has('fail'))
+        <div class="alert alert-danger">
+            {{Session::get('fail')}}
+        </div>
+    @endif
 
     <table class="table table-dark">
         <thead>
             <tr>
                 <th scope="col">#</th>
-            <th scope="col">{{__('message.offer name')}}</th>
-            <th scope="col">{{__("message.offer price")}}</th>
-            <th scope="col">{{__("message.offer details")}}</th>
+                <th scope="col">{{__('message.offer name')}}</th>
+                <th scope="col">{{__("message.offer price")}}</th>
+                <th scope="col">{{__("message.offer details")}}</th>
+                <th scope="col">{{__("message.offer image")}}</th>
+                <th scope="col">Status</th>
+                <th scope="col">{{__("message.operation")}}</th>
             </tr>
         </thead>
         <tbody>
@@ -104,14 +116,21 @@
                 <th scope="row">{{$offer->id}}</th>
                     <td>{{$offer->name}}</td>
                     <td>{{$offer->price}}</td>
-                <td>{{$offer->details}}</td>
+                    <td>{{$offer->details}}</td>
+                    <td><img src="{{asset('images/offers/'.$offer->photo)}}" alt="{{__("message.offer image")}}" width="90" height="90"></td>
+                    <td>{{$offer->status}}</td>
+                    <td>
+                        <a href="{{url('offer/edit/'.$offer->id)}}" class="btn btn-primary">{{__('message.edit')}}</a>
+                        <a href="{{url('offer/delete/'.$offer->id)}}" class="btn btn-danger ml-2">{{__('message.delete')}}</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
-
-
+    <a href="{{route('inactive.offer')}}" class="btn btn-primary">Inactive Offers</a>
+    <div class="d-flex justify-content-center">
+        {{-- {!! $offers->links() !!} --}}
+    </div>
 </body>
 
 </html>
